@@ -19,19 +19,20 @@ export default {
     return response;
   },
   getFilms () {
+    //Recieves array of {_id, year, place,size}
     return this.makeRequest('get','/films',null);
   },
   createFilm (data) {
-    return this.makeRequest('post', '/film/create', data);
-  },
-  updateFilm (id,data) {
     if(data.photos){
       //this is for the case we wanna create several pictures aside from the actual film.
       return {photos: this.makeRequest('post','/bulkPhotoCreate',data.film._id),
-              film: this.makeRequest('post', `/film/${id}/create`, data)}
+              film: this.makeRequest('post', `/film/create`, data)}
     }
     //this is in case we wanna just create a film without photos
-    return this.makeRequest('post', `/film/${id}/create`, data);
+    return this.makeRequest('post', `/film/create`, data);
+  },
+  updateFilm (id,data) {
+    return this.makeRequest('post', `/film/${id}/update`, data);
   },
   readFilm (id) {
     return this.makeRequest('get', `/film/${id}`, null);
@@ -46,7 +47,7 @@ export default {
     return this.makeRequest('post', '/photo/create', data);
   },
   updatePhoto (id,data) {
-    return this.makeRequest('post', `/photo/${id}/create`, data);
+    return this.makeRequest('post', `/photo/${id}/update`, data);
   },
   readPhoto (id) {
     return this.makeRequest('get', `/photo/${id}`, null);

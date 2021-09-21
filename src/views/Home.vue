@@ -1,21 +1,19 @@
 <template>
-  <v-app>
-    <v-container fill-height pa-0 >
-      <v-row align-content="center" justify="center" dense>
-        <v-col cols="3"><h1>Image Manager</h1></v-col>
-      </v-row>
-      <v-row justify="center" no-gutters dense>
-        <v-col cols="2">
+    <b-container >
+      <b-row align-h="center" align-v="center">
+        <b-col cols="3"><h1>Image Manager</h1></b-col>
+      </b-row>
+      <b-row style="min-height:500px;" align-v="center" align-h="center">
+        <b-col cols="2">
           <div>
-            <ol v-if="statistics">
+            <ol b-if="statistics">
               <li>Films:{{ statistics.film_count }}</li>
               <li>Photos:{{ statistics.photo_count }}</li>
             </ol>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-app>
+        </b-col>
+      </b-row>
+    </b-container>
 </template>
 
 <script>

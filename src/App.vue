@@ -1,27 +1,18 @@
 <template>
-  <v-app>
-  <v-navigation-drawer app permanent >
-    <!-- -->
-  </v-navigation-drawer>
-  
-  <!-- Sizes your content based upon application components -->
-  <v-main>
-    <!-- Provides the application the proper gutter -->
-    <v-container fluid no-gutters pa-0>
-      <router-view></router-view>
-    </v-container>
-  </v-main>
-
-</v-app>
-
+  <div>
+    <side-bar id="sidebar"/>
+    <router-view id="view"></router-view>
+  </div>
+      
 </template>
 
 <script>
-
+import sideBar from './components/side-bar.vue'
 
 export default {
   name: 'App',
   components: {
+    sideBar
   },
 
   data(){
@@ -31,3 +22,6 @@ export default {
   },
 };
 </script>
+<style scoped>
+
+</style>
