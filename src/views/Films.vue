@@ -7,14 +7,14 @@
             <b-button v-b-modal.createFilm variant="outline-dark">New</b-button>
           </b-button-group>
         </b-button-toolbar>
-        <b-modal id="createFilm">
-          <form-film title="Create Film" />
+        <b-modal v-if="films.length!=0" id="createFilm" size="xl">
+          <form-film title="Create Film" :filmId="films[films.length-1]._id+1" />
         </b-modal>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <list-film/>
+        <list-film :films="films"/>
       </b-col>
     </b-row>
   </b-container>
@@ -24,11 +24,23 @@
 import Vue from 'vue'
 import listFilm from '../components/list-film.vue'
 import formFilm from '../components/form-film.vue'
+import services from '../services'
+
 export default Vue.extend({
   name: 'Films',
   components: {
     listFilm,
     formFilm
-  }
+  },
+  data(){
+    return{
+      films:[]
+    }
+  },
+  async created() {
+    let response = await services.getFilms();
+    console.log(response.data);
+    this.films = response.data;
+  },
 });
 </script>

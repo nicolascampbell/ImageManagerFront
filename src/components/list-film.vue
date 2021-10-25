@@ -20,15 +20,12 @@
 <script>
 import Vue from 'vue'
 
-import services from '../services'
 export default Vue.extend({
   name:'ListFilm',
   components:{
   },
-  data(){
-    return{
-      films:'',
-    }
+  props:{
+    films:Array
   },
   methods:{
     onRowSelected(item){
@@ -36,11 +33,7 @@ export default Vue.extend({
       this.$router.push({name:'Film', params:{filmid:item[0]._id}})
     }
   },
-  async created() {
-    let response = await services.getFilms();
-    console.log(response.data);
-    this.films = response.data;
-  },
+  
 
 });
 </script>
